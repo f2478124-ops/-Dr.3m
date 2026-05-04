@@ -114,4 +114,26 @@ async function handleLeveling(message, client) {
   }
 }
 
+import fs from 'fs';
 
+const FILE = './data/autoreplies.json';
+
+function load() {
+  if (!fs.existsSync(FILE)) return {};
+  return JSON.parse(fs.readFileSync(FILE));
+}
+
+export default {
+  name: 'messageCreate',
+  async execute(message) {
+    if (message.author.bot) return;
+
+    const data = load();
+
+    for (let word in data) {
+      if (message.content.includes(word)) {
+        message.reply(data[word]);
+      }
+    }
+  }
+};
