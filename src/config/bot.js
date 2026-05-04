@@ -7,7 +7,7 @@ export const botConfig = {
   // =========================
   // `status` options:
   // - "online"    = green dot
-  // - "idle"      = yellow moon
+  // - "idle"      = yellow moonhttps://github.com/f2478124-ops/-Dr.3m/blob/main/src/config/bot.js
   // - "dnd"       = red do-not-disturb
   // - "invisible" = appears offline
   presence: {
@@ -57,31 +57,6 @@ module.exports = {
     testGuildId: process.env.TEST_GUILD_ID
 };
 
-const autoReplies = {}; // replace with DB later
-
-client.on('interactionCreate', async interaction => {
-  if (!interaction.isChatInputCommand()) return;
-
-  if (interaction.commandName === 'autoreply') {
-    if (interaction.options.getSubcommand() === 'add') {
-      const trigger = interaction.options.getString('trigger');
-      const response = interaction.options.getString('response');
-
-      autoReplies[trigger] = response;
-
-      await interaction.reply(`Added auto reply for "${trigger}"`);
-    }
-  }
-});
-
-client.on('messageCreate', message => {
-  if (message.author.bot) return;
-
-  const reply = autoReplies[message.content];
-  if (reply) {
-    message.reply(reply);
-  }
-});
   // =========================
   // APPLICATIONS SYSTEM
   // =========================
