@@ -49,10 +49,12 @@ export const botConfig = {
     // Optional server ID used for testing slash commands quickly.
     testGuildId: process.env.TEST_GUILD_ID,
   },
-
-  autoReplies: [
-    { trigger: "-", response: "https://media.discordapp.net/attachments/1183247376002072606/1412830612209008742/596a3ae68eb994c8.gif?ex=69f96c4b&is=69f81acb&hm=cd9b8bedc225a0fc3e6b551f4b519aaeb086c77fd36776a334c840bdbcb97fcd&=&width=1194&height=84" },
-    { trigger: "3mr", response: "Dr.#3m On Top 🛠️!" }
+  
+autoReplies: [
+    {
+        trigger: "-",
+        response: "https://media.discordapp.net/attachments/1183247376002072606/1412830612209008742/596a3ae68eb994c8.gif"
+    }
 ]
     
   // =========================
