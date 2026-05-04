@@ -12,7 +12,7 @@ export const botConfig = {
   // - "invisible" = appears offline
   presence: {
     // Current online state shown on Discord.
-    status: "online",
+    status: "idle",
 
     // Activity lines shown under the bot name.
     // `type` number mapping from Discord:
@@ -25,7 +25,7 @@ export const botConfig = {
     activities: [
       {
         // Text users will see (example: "Playing /help | Titan Bot").
-        name: "Made with ❤️",
+        name: "Made by Dr.#3m",
         // Activity type number (0 = Playing).
         type: 0, 
       },
@@ -41,7 +41,7 @@ export const botConfig = {
     owners: process.env.OWNER_IDS?.split(",") || [],
 
     // Default wait time between command uses (in seconds).
-    defaultCooldown: 3, 
+    defaultCooldown: 2, 
 
     // If true, old commands are removed before re-registering.
     deleteCommands: false,
@@ -50,6 +50,11 @@ export const botConfig = {
     testGuildId: process.env.TEST_GUILD_ID,
   },
 
+  autoReplies: [
+    { trigger: "-", response: "https://media.discordapp.net/attachments/1183247376002072606/1412830612209008742/596a3ae68eb994c8.gif?ex=69f96c4b&is=69f81acb&hm=cd9b8bedc225a0fc3e6b551f4b519aaeb086c77fd36776a334c840bdbcb97fcd&=&width=1194&height=84" },
+    { trigger: "3mr", response: "Dr.#3m On Top 🛠️!" }
+]
+    
   // =========================
   // APPLICATIONS SYSTEM
   // =========================
