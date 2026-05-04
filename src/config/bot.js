@@ -49,14 +49,39 @@ export const botConfig = {
     // Optional server ID used for testing slash commands quickly.
     testGuildId: process.env.TEST_GUILD_ID,
   },
-  
-autoReplies: [
-    {
-        trigger: "-",
-        response: "https://media.discordapp.net/attachments/1183247376002072606/1412830612209008742/596a3ae68eb994c8.gif"
+
+module.exports = {
+    owners: process.env.OWNER_IDS?.split(",") || [],
+    defaultCooldown: 2,
+    deleteCommands: false,
+    testGuildId: process.env.TEST_GUILD_ID
+};
+
+const autoReplies = {}; // replace with DB later
+
+client.on('interactionCreate', async interaction => {
+  if (!interaction.isChatInputCommand()) return;
+
+  if (interaction.commandName === 'autoreply') {
+    if (interaction.options.getSubcommand() === 'add') {
+      const trigger = interaction.options.getString('trigger');
+      const response = interaction.options.getString('response');
+
+      autoReplies[trigger] = response;
+
+      await interaction.reply(`Added auto reply for "${trigger}"`);
     }
-]
-    
+  }
+});
+
+client.on('messageCreate', message => {
+  if (message.author.bot) return;
+
+  const reply = autoReplies[message.content];
+  if (reply) {
+    message.reply(reply);
+  }
+});
   // =========================
   // APPLICATIONS SYSTEM
   // =========================
